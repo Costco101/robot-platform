@@ -27,9 +27,7 @@ void loop() {
     Serial.print(distance);
     Serial.print(" cm  \n");
 
-    Serial.print("Signal Strength: ");
-    Serial.print(signalStrength);
-    Serial.print("\n");
+  
   }
 
   delay(10);               
