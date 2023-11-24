@@ -1,10 +1,11 @@
 #include <Wire.h>
+int b;
 
 byte deviceAddress = 0x10;  // The address of the TF-Luna device is 0x10
 
 void setup() {
   Wire.begin();             // The I2C bus communication starts
-  Serial.begin(115200);       // Example Set the baud rate of the serial port to 115200
+  Serial.begin(9600);       // Example Set the baud rate of the serial port to 115200
 }
 
 void loop() {
@@ -20,15 +21,15 @@ void loop() {
       data[i] = Wire.read();              // Read data into an array
     }
 
-    unsigned int distance = (data[1] << 8) | data[0];                   // DistanceValue
-    unsigned int signalStrength = (data[3] << 8) | data[2];             // signal strength
-
-    Serial.print("Distance: ");
-    Serial.print(distance);
-    Serial.print(" cm  \n");
+    unsigned int distance = (data[1] << 8) | data[0];               
+   // Serial.print("Distance: ");
+    //Serial.print(distance);
+    //Serial.print(" cm  \n");
+    b = distance;
+    Serial.println(b);
 
   
   }
 
-  delay(10);               
+  delay(100);               
 }
