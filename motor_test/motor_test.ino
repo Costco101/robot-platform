@@ -2,20 +2,18 @@
 #define ENCA 2 // YELLOW
 #define ENCB 3 // WHITE
 #define PWMr 24 //speed - right
-#define IN2r 22 //direction 2 - right
-#define IN1r 26 //direction 1 - right
+#define IN2r 26 //direction 2 - right
+#define IN1r 22 //direction 1 - right
 #define PWMl 5 //speed - left
-#define IN2l 7 //direction 2 - left
-#define IN1l 6 //direction 1 - left
+#define IN2l 6 //direction 2 - left
+#define IN1l 7 //direction 1 - left
 
 
 
 
 #define ENCAL 18 // YELLOW
 #define ENCBL 19 // WHITE
-//#define PWMr 24 //speed - right
-//#define IN2r 22 //direction 2 - right
-//#define IN1r 26 //direction 1 - right
+
 
 
 
@@ -48,7 +46,7 @@ int pos2 = 0;
 
 
 void setup() {
-Serial.begin(9600);
+Serial.begin(115200);
 pinMode(ENCA,INPUT);
 pinMode(ENCB,INPUT);
 pinMode(ENCAL,INPUT);
@@ -79,7 +77,7 @@ Serial.println("target pos");
 
 void loop() {
 forward(500);
-delay(500);
+delay(5);
 forward(500);
 // set target position
 
@@ -96,9 +94,9 @@ forward(500);
 
 
 // PID constants
-float kp = .09;
-float kd = 0.025;
-float ki = 0.002;
+float kp = .05;
+float kd = .05;
+float ki = 0;
 
 
 
@@ -200,8 +198,7 @@ Serial.println(target1);
 Serial.print(" ");
 Serial.print("pos1: ");
 Serial.println(pos1);
-Serial.print("pos2: ");
-Serial.println(pos2);
+
 if (target1 != pos1){
 target1++;
 }
@@ -280,8 +277,7 @@ Serial.println(clickPerRot);
 //target = distance / circ * clickPerRot;
 target1 = 5000;
 target2 = 5000;
-return(target1);
-return(target2);
+
 Serial.print("target1: ");
 Serial.println(target1);
 Serial.print("pos1: ");
@@ -290,11 +286,9 @@ Serial.print("target2: ");
 Serial.println(target2);
 Serial.print("pos2 : ");
 Serial.println(pos2);
-
-
-
-
+return(target1);
 }
+
 void readEncoder1R(){
 int a1 = digitalRead(ENCA);
 if(a1>0){
